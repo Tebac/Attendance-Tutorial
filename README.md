@@ -5,3 +5,10 @@
 * Ruby
 * Rails
 * Git
+#
+2020/7/6
+git add -A
+git commit -m "Finish edit-attendances master"
+git push
+
+
