@@ -4,28 +4,28 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "トップへ", root_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to "ユーザー一覧", users_path %></li>
-          <% if current_user.admin? %>
-          <li><%= link_to "基本情報の修正",users__edit_all_basic_info_path %></li>
-          <% end %>
+          <% if logged_in? %>
+            <li><%= link_to "ユーザー一覧", users_path %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to "基本情報の修正", edit_all_basic_info_user_path(current_user) %></li>
+            <% end %>
  
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= current_user.name %><b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "勤怠情報", current_user %></li>
-              <li><%= link_to "アカウント情報変更", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "ログアウト", logout_path, method: :delete %>
-              </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "ログイン", login_path %></li>
-        <% end %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.name %><b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "勤怠情報", current_user %></li>
+                <li><%= link_to "アカウント情報変更", edit_user_path(current_user) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "ログアウト", logout_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "ログイン", login_path %></li>
+          <% end %>
       </ul>
     </nav>
   </div>
