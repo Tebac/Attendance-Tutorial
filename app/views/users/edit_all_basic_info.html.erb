@@ -16,12 +16,12 @@
           <%= f.label :work_time, class: "label-#{yield(:class_text)}" %>
           <%= f.time_field :work_time, class: "form-control" %>
         
-          <div class="center">
-            <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
-            <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
-              キャンセル
-            </button>
-          </div>
+          <!--<div class="center">-->
+          <!--  <!%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>-->
+          <!--  <button type="button" class="btn btn-default btn-<!%= yield(:class_text) %>" data-dismiss="modal">-->
+          <!--    キャンセル-->
+          <!--  </button>-->
+          <!--</div>-->
         <% end %>
       </div>
     </div>
