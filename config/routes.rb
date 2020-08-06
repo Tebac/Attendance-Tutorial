@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
+      
     member do
       get 'edit_basic_info'
       get 'edit_all_basic_info'

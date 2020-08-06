@@ -5,13 +5,20 @@ before_action :correct_user, only: [:edit, :update]
 before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
 before_action :set_one_month, only: :show
 
+
+
 def index
-@users = User.paginate(page: params[:page])
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.paginate(page: params[:page], per_page: 10)
+    end
+   
+    @p_users = @users.paginate(page: params[:page])
 end
 
 def show
 @worked_sum = @attendances.where.not(started_at: nil).count
-
 end
 
 def new

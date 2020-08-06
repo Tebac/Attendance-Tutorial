@@ -50,8 +50,9 @@
     </thead>
 
     <tbody>
-     <% @attendances.each do |day| %>
-      <tr>
+      <% @attendances.each do |day| %>
+       <!--<!% DateTime == day.started_at? %>-->
+        <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
             <% css_class = 
             case $days_of_the_week[day.worked_on.wday]
@@ -61,15 +62,15 @@
             'text-danger'
             end %>
           <td class="<%= css_class %>" id="wday"><%= $days_of_the_week[day.worked_on.wday] %></td>
-          <td><%= l(day.started_at, format: :timeH) if day.started_at.present? %></td>
-          <td><%= l(day.started_at, format: :timeM) if day.started_at.present? %></td>
+          <td><%= l(round_s(day.started_at),format: :timeH) if day.started_at.present? %></td>
+          <td><%= l(round_s(day.started_at),format: :timeM) if day.started_at.present? %></td>
           <td>
             <% if btn_text = attendance_state(day) %>
               <%= link_to "#{btn_text}", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           </td>
-          <td><%= l(day.finished_at, format: :timeH) if day.finished_at.present? %></td>
-          <td><%= l(day.finished_at, format: :timeM) if day.finished_at.present? %></td>
+          <td><%= l(round_f(day.finished_at), format: :timeH) if day.finished_at.present? %></td>
+          <td><%= l(round_f(day.finished_at), format: :timeM) if day.finished_at.present? %></td>
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
               <%= working_times(day.started_at, day.finished_at) %>
