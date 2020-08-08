@@ -1,20 +1,15 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info, :edit_all_basic_info]
+before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info,:edit_all_basic_info]
 before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
 before_action :correct_user, only: [:edit, :update]
-before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info,:edit_all_basic_info]
+before_action :admin_or_correct_user, only: :show
 before_action :set_one_month, only: :show
 
 
 
 def index
-    if params[:name].present?
-      @users = User.where('name LIKE ?', "%#{params[:name]}%")
-    else
-      @users = User.paginate(page: params[:page], per_page: 10)
-    end
-   
-    @p_users = @users.paginate(page: params[:page])
+  @users = User.where('name LIKE ?', "%#{params[:name]}%").paginate(page: params[:page], per_page: 10)
 end
 
 def show

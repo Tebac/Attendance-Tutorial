@@ -9,4 +9,9 @@ module ApplicationHelper
       page_name + " | " + base_title # 文字列を連結して返す
     end
   end
+  
+  # def h1_title(search_name)
+  #   return "ユーザー一覧" if search_name == User.all
+  #   return "検索結果一覧" unless search_name == User.all
+  # end
 end

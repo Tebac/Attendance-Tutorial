@@ -39,7 +39,7 @@ class AttendancesController < ApplicationController
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
     redirect_to user_url(date: params[:date])
   rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
-    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+    flash[:danger] = "更新をキャンセルしました。時間の入力が適切ではありません。"
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
 
@@ -52,12 +52,5 @@ class AttendancesController < ApplicationController
 
     # beforeフィルター
 
-    # 管理権限者、または現在ログインしているユーザーを許可します。
-    def admin_or_correct_user
-      @user = User.find(params[:user_id]) if @user.blank?
-      unless current_user?(@user) || current_user.admin?
-        flash[:danger] = "編集権限がありません。"
-        redirect_to(root_url)
-      end  
-    end
+    
 end
