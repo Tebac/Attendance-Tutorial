@@ -10,7 +10,6 @@ gem 'bootstrap-will_paginate'
 gem 'puma',         '~> 3.7'
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
-gem 'rounding'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks',   '~> 5'
@@ -28,9 +27,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# group :production do
-#   gem 'pg', '0.20.0'
-# end
+group :production do
+  gem 'pg', '0.20.0'
+end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
 # Mac環境でもこのままでOKです
